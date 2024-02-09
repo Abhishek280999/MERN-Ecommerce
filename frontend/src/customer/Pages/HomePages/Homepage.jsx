@@ -5,10 +5,17 @@ import HomeSectionCarousel from '../../components/HomeSectionCarousel/HomeSectio
 const Homepage = () => {
   return (
     <div>
-        <MainCarousel/>
-        <div>
-            <HomeSectionCarousel/>
-        </div>
+      <MainCarousel />
+      <div className='py-20 space-y-10 flex flex-col justify-center px-5 lg:px-10'>
+        <HomeSectionCarousel />
+        <HomeSectionCarousel />
+        <HomeSectionCarousel />
+        <HomeSectionCarousel />
+        <HomeSectionCarousel />
+        <HomeSectionCarousel />
+        <HomeSectionCarousel />
+
+      </div>
     </div>
   )
 }

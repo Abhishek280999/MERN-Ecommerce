@@ -1,27 +1,81 @@
-import React from 'react'
-import HomeSectionCard from '../HomeSectionCard/HomeSectionCard'
-import AliceCarousel from 'react-alice-carousel'
+import React, { useState } from "react";
+import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
+import AliceCarousel from "react-alice-carousel";
+import { mens_kurta } from "../../../Data/mens_kurta";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import { Button } from "@mui/material";
 
 const HomeSectionCarousel = () => {
-    const responsive = {
-        0: { items: 1 },
-        720: { items: 3 },
-        1024: { items: 4 },
-    };
+  const [activeIndex, setActiveIndex] = useState(0);
 
-    const items = [1,1,1,1,1,1,].map((items)=> <HomeSectionCard/>)
+  const responsive = {
+    0: { items: 1 },
+    720: { items: 3 },
+    1024: { items: 5.5 },
+  };
+
+  const slidePrev = () => setActiveIndex(activeIndex - 1);
+  const slideNext = () => setActiveIndex(activeIndex + 1);
+
+  const syncActiveIndex = ({ item }) => setActiveIndex(item);
+
+  const items = mens_kurta
+    .slice(0, 10)
+    .map((item) => <HomeSectionCard product={item} />);
   return (
-    <div>
-          <AliceCarousel
-            items={items}
-            responsive={responsive}
-            disableButtonsControls
-            autoPlay
-            autoPlayDirection={1000}
-            infinite
+    <div className=" border ">
+      <div className="relative p-5  ">
+        <AliceCarousel
+          items={items}
+          mouseTracking
+          responsive={responsive}
+          disableButtonsControls
+          disableDotsControls
+          onSlideChanged={syncActiveIndex}
+          activeIndex={activeIndex}
         />
-    </div>
-  )
-}
+        {activeIndex !== items.length - 5 && (
+          <Button
+            onClick={slideNext}
+            variant="contained"
+            className="z-50  "
+            sx={{
+              position: "absolute",
+              top: "8rem",
+              right: "0rem",
+              transform: "translateX(50%) rotate(90deg)",
+              bgcolor: "white",
+            }}
+            aria-label="next"
+          >
+            <KeyboardArrowLeftIcon
+              sx={{ transform: "rotate(90deg)", color: "black" }}
+            />
+          </Button>
+        )}
 
-export default HomeSectionCarousel
+        {activeIndex !== 0 && (
+          <Button
+            onClick={slidePrev}
+            variant="contained"
+            className="z-50  "
+            sx={{
+              position: "absolute",
+              top: "8rem",
+              left: "0rem",
+              transform: "translateX(-50%) rotate(-90deg)",
+              bgcolor: "white",
+            }}
+            aria-label="next"
+          >
+            <KeyboardArrowLeftIcon
+              sx={{ transform: "rotate(90deg)", color: "black " }}
+            />
+          </Button>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default HomeSectionCarousel;

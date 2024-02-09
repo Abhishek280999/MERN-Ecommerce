@@ -13,8 +13,9 @@ const items = mainCarouselData.map((item)=> <img className='cursor-pointer' role
             items={items}
             disableButtonsControls
             autoPlay
-            autoPlayDirection={1000}
+            autoPlayDirection={2000}
             infinite
+            
         />
   )
 }
