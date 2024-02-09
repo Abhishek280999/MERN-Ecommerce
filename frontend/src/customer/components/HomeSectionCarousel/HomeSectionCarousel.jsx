@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
 import AliceCarousel from "react-alice-carousel";
-import { mens_kurta } from "../../../Data/mens_kurta";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { Button } from "@mui/material";
 
-const HomeSectionCarousel = () => {
+const HomeSectionCarousel = ({data ,sectionName}) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const responsive = {
@@ -19,11 +18,12 @@ const HomeSectionCarousel = () => {
 
   const syncActiveIndex = ({ item }) => setActiveIndex(item);
 
-  const items = mens_kurta
+  const items = data
     .slice(0, 10)
     .map((item) => <HomeSectionCard product={item} />);
   return (
     <div className=" border ">
+    <h2 className="text-2xl font-extrabold py-5 text-gray-800 ">{sectionName}</h2>
       <div className="relative p-5  ">
         <AliceCarousel
           items={items}
@@ -34,6 +34,25 @@ const HomeSectionCarousel = () => {
           onSlideChanged={syncActiveIndex}
           activeIndex={activeIndex}
         />
+        {activeIndex !== 0 && (
+          <Button
+            onClick={slidePrev}
+            variant="contained"
+            className="z-50  "
+            sx={{
+              position: "absolute",
+              top: "8rem",
+              left: "0rem",
+              transform: "translateX(-50%) rotate(-90deg)",
+              bgcolor: "white",
+            }}
+            aria-label="next"
+          >
+            <KeyboardArrowLeftIcon
+              sx={{ transform: "rotate(90deg)", color: "black " }}
+            />
+          </Button>
+        )}
         {activeIndex !== items.length - 5 && (
           <Button
             onClick={slideNext}
@@ -54,25 +73,7 @@ const HomeSectionCarousel = () => {
           </Button>
         )}
 
-        {activeIndex !== 0 && (
-          <Button
-            onClick={slidePrev}
-            variant="contained"
-            className="z-50  "
-            sx={{
-              position: "absolute",
-              top: "8rem",
-              left: "0rem",
-              transform: "translateX(-50%) rotate(-90deg)",
-              bgcolor: "white",
-            }}
-            aria-label="next"
-          >
-            <KeyboardArrowLeftIcon
-              sx={{ transform: "rotate(90deg)", color: "black " }}
-            />
-          </Button>
-        )}
+        
       </div>
     </div>
   );
