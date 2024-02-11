@@ -3,18 +3,21 @@ import React from "react";
 import AddressCard from "../AddressCard/AddressCard";
 
 const DeliveryAddressForm = () => {
+    
   const handleSubmit = (event) => {
-    // event.preventDefault();
-    // const data = new FormData(event.currentTarget);
-    // const address = {
-    //   firstName: data.get("firstName"),
-    //   lastName: data.get("lastName"),
-    //   streetAddress: data.get("address"),
-    //   city: data.get("city"),
-    //   state: data.get("state"),
-    //   zipCode: data.get("zip"),
-    //   mobile: data.get("phoneNumber"),
-    // };
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const address = {
+      firstName: data.get("firstName"),
+      lastName: data.get("lastName"),
+      streetAddress: data.get("address"),
+      city: data.get("city"),
+      state: data.get("state"),
+      zipCode: data.get("zip"),
+      mobile: data.get("phoneNumber"),
+    };
+    console.log("address" , address)
+
     // dispatch(createOrder({ address, jwt, navigate }));
     // handleNext();
   };
