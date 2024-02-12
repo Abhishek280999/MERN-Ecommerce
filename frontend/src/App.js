@@ -1,4 +1,5 @@
 
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Homepage from './customer/Pages/HomePages/Homepage';
 import Cart from './customer/components/Carts/Cart';
@@ -9,22 +10,15 @@ import Order from './customer/components/Order/Order';
 import OrderDetails from './customer/components/Order/OrderDetails';
 import Product from './customer/components/Product/Product';
 import ProductDetails from './customer/components/ProductDetails/ProductDetails';
+import CustomerRoute from './Routers/CustomerRoute';
 
 
 function App() {
   return (
     <div >
-    <Navigation/>
-    <div>
-    {/* <Homepage/>
-    <Product/> */}
-    {/* <ProductDetails/> */}
-    {/* <Cart/> */}
-    {/* <Checkout/> */}
-    {/* <Order/> */}
-    <OrderDetails/>
-    </div>
-    <Footer/>
+    <Routes>
+      <Route path='/*' element={<CustomerRoute/>}></Route>
+    </Routes>
     </div>
   );
 }

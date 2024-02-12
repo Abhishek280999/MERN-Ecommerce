@@ -50,21 +50,19 @@ export default function Product() {
 
     if (filterValue.length > 0) {
       searchParamms.set(sectionId, filterValue.join(","));
-      
     }
     const quary = searchParamms.toString();
-      navigate({ search: `?${quary}` });
+    navigate({ search: `?${quary}` });
   };
 
-  const handleRadioFilterChange = (e,sectionId)=>{
+  const handleRadioFilterChange = (e, sectionId) => {
     const searchParamms = new URLSearchParams(location.search);
-    
-    searchParamms.set(sectionId , e.target.value)
+
+    searchParamms.set(sectionId, e.target.value);
 
     const quary = searchParamms.toString();
-      navigate({ search: `?${quary}` });
-
-  }
+    navigate({ search: `?${quary}` });
+  };
 
   return (
     <div className="bg-white">
@@ -364,8 +362,10 @@ export default function Product() {
                                 >
                                   {section.options.map((option, optionIdx) => (
                                     <>
-                                      <FormControlLabel 
-                                      onChange={(e)=> handleRadioFilterChange(e,section.id)}
+                                      <FormControlLabel
+                                        onChange={(e) =>
+                                          handleRadioFilterChange(e, section.id)
+                                        }
                                         value={option.value}
                                         control={<Radio />}
                                         label={option.label}
