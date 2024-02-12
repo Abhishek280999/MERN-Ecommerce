@@ -9,7 +9,7 @@ const OrderSummery = () => {
         <div className='p-5 shadow-lg rounded-md border '>
             <AddressCard/>
         </div>
-        <div>
+        <div className='pt-4'>
       <div className="lg:grid grid-cols-3  relative">
         <div className=" col-span-2">
           {[1,1,1,1].map((item)=><CartItem />)}
