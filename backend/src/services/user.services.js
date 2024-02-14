@@ -1,6 +1,6 @@
 const User = require("../models/user.models");
 const bcrypt = require("bcrypt");
-const jwtProvider = require("../config/jwtProvider");
+const jwtProvider = require("../config/jwtProvider.js");
 
 const createUser = async (userData) => {
   try {
