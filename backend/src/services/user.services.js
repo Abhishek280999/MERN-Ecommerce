@@ -25,20 +25,21 @@ const createUser = async (userData) => {
     console.log("user ", user);
     return user;
   } catch (error) {
-    console.log("error - ", error.message);
+    // console.log("error - ", error.message);
     throw new Error(error.message);
   }
 };
 
 const findUserById = async (userId) => {
   try {
-    const user = await User.findById(userId).populate("address");
+    const user = await User.findById(userId)
+    // .populate("address");
     if (!user) {
       throw new Error("user not found with id : ", userId);
     }
     return user;
   } catch (error) {
-    console.log("error :------- ", error.message);
+    // console.log("error :------- ", error.message);
     throw new Error(error.message);
   }
 };
@@ -53,7 +54,7 @@ const getUserByEmail = async (email) => {
 
     return user;
   } catch (error) {
-    console.log("error - ", error.message);
+    // console.log("error - ", error.message);
     throw new Error(error.message);
   }
 };
@@ -64,15 +65,16 @@ const getUserProfileByToken = async (token) => {
 
     console.log("userr id ", userId);
 
-    const user = (await findUserById(userId)).populate("addresses");
+    const user = (await findUserById(userId));
     user.password = null;
 
     if (!user) {
       throw new Error("user not exist with id : ", userId);
     }
+    console.log("user",user)
     return user;
   } catch (error) {
-    console.log("error ----- ", error.message);
+    // console.log("error ----- ", error.message);
     throw new Error(error.message);
   }
 };
@@ -82,7 +84,7 @@ const getAllUsers = async () => {
     const users = await User.find();
     return users;
   } catch (error) {
-    console.log("error - ", error);
+    // console.log("error - ", error);
     throw new Error(error.message);
   }
 };

@@ -1,8 +1,10 @@
 const userService=require("../services/user.services")
 
 const getUserProfile=async (req,res)=>{
+    const jwt= req.headers.authorization?.split(' ')[1];
+
+     console.log("req",jwt)
     try {
-        const jwt= req.headers.authorization?.split(' ')[1];
 
         if(!jwt){
             return res.status(404).send({error:"token not found"})
@@ -13,7 +15,7 @@ const getUserProfile=async (req,res)=>{
 
     
     } catch (error) {
-        console.log("error from controller - ",error)
+        // console.log("error from controller - ",error)
         return res.status(500).send({error:error.message})
     }
 }
