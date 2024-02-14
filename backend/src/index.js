@@ -16,4 +16,4 @@ app.use("/auth",authRouters)
 const userRouters = require("./routes/user.routes.js")
 app.use("/users",userRouters)
 
-module.exports=app
+module.exports=app 

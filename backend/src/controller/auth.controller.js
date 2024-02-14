@@ -1,7 +1,7 @@
-const userService=require("../services/user.service.js")
+const userService=require("../services/user.services.js")
 const jwtProvider=require("../config/jwtProvider.js")
 const bcrypt=require("bcrypt")
-const cartService=require("../services/cart.service.js")
+const cartService=require("../services/cart.services.js")
 
 const register=async(req,res)=>{
 

@@ -1,4 +1,4 @@
-const userService=require("../services/user.service")
+const userService=require("../services/user.services")
 
 const getUserProfile=async (req,res)=>{
     try {
