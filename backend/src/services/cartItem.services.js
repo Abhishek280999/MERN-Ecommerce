@@ -3,13 +3,12 @@ const userService = require("../services/user.services.js");
 
 // Update an existing cart item
 async function updateCartItem(userId, cartItemId, cartItemData) {
+  // console.log(userId, cartItemId, cartItemData)
   try {
     const item = await findCartItemById(cartItemId);
-
-    if (!item) {
-      throw new Error("cart item not found : ", cartItemId);
-    }
+ 
     const user = await userService.findUserById(item.userId);
+    // console.log("hdchhs" , user)
 
     if (!user) {
       throw new Error("user not found : ", userId);
@@ -34,7 +33,7 @@ async function updateCartItem(userId, cartItemId, cartItemData) {
 async function removeCartItem(userId, cartItemId) {
   const cartItem = await findCartItemById(cartItemId);
   const user = await userService.findUserById(cartItem.userId);
-  const reqUser = await userService.findUserById(userId);
+  // const reqUser = await userService.findUserById(userId);
 
   if (user._id.toString() === cartItem.userId.toString()) {
     await CartItem.findByIdAndDelete(cartItemId);
@@ -45,7 +44,7 @@ async function removeCartItem(userId, cartItemId) {
 
 // Find a cart item by its ID
 async function findCartItemById(cartItemId) {
-    const cartItem = await findCartItemById(cartItemId)
+    const cartItem = await CartItem.findById(cartItemId).populate("product")
     if (cartItem) {
       return cartItem;
     } else {
