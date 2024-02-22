@@ -1,20 +1,19 @@
 const express = require("express");
 const router = express.Router();
 
-const cartService = require("../services/cart.services.js");
+const cartService = require("../services/cart.services");
 
 const findUserCart = async (req, res) => {
-  const user = req.user;
   try {
-    const cart = await cartService.findUserCart(user._id);
-    res.status(200).send(cart);
+    const user = req.user;
+    const cart = await cartService.findUserCart(user.id);
+    console.log(user)
+    res.status(200).json(cart);
   } catch (error) {
     // Handle error here and send appropriate response
-    res
-      .status(500)
-      .json({ message: "Failed to get user cart.", error: error.message });
+    res.status(501).json({ message: "Failed to get user cart." });
   }
-};
+}
 
 const addItemToCart = async (req, res) => {
   const user = req.user;

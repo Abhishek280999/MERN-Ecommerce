@@ -84,7 +84,7 @@ const getAllUsers = async () => {
     const users = await User.find();
     return users;
   } catch (error) {
-    // console.log("error - ", error);
+    console.log("error - ", error);
     throw new Error(error.message);
   }
 };

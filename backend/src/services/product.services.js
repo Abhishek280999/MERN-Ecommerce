@@ -1,4 +1,4 @@
-const Category = require("../models/category.model,js");
+const Category = require("../models/category.model.js");
 const Product = require("../models/product.model.js");
 
 // Create a new product
@@ -11,7 +11,7 @@ async function createProduct(reqData) {
       level: 1,
     });
 
-    // topLevel = await topLevelCategory.save();
+     topLevel = await topLevelCategory.save();
   }
 
   let secondLevel = await Category.findOne({
@@ -26,7 +26,7 @@ async function createProduct(reqData) {
       level: 2,
     });
 
-    // secondLevel = await secondLevelCategory.save();
+     secondLevel = await secondLevelCategory.save();
   }
 
   let thirdLevel = await Category.findOne({
@@ -41,7 +41,7 @@ async function createProduct(reqData) {
       level: 3,
     });
 
-    // thirdLevel = await thirdLevelCategory.save();
+     thirdLevel = await thirdLevelCategory.save();
   }
 
   const product = new Product({
@@ -58,7 +58,7 @@ async function createProduct(reqData) {
     category: thirdLevel._id,
   });
 
-  //   const savedProduct = await product.save();
+     const savedProduct = await product.save();
 
   return savedProduct;
 }
