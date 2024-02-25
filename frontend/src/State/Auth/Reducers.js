@@ -1,14 +1,15 @@
 import {
-  GET_USER_FAILURE,
-  GET_USER_REQUEST,
-  GET_USER_SUCCESS,
-  LOGIN_FAILURE,
+
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  GET_USER_REQUEST,
+  GET_USER_SUCCESS,
+  GET_USER_FAILURE,
   LOGOUT,
-  REGISTER_FAILURE,
   REGISTER_REQUEST,
-  REGISTER_SUCCESS,
 } from "./ActionTypes";
 
 const initialState = {
@@ -17,7 +18,7 @@ const initialState = {
   error: null,
 };
 
-export const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case REGISTER_REQUEST:
     case LOGIN_REQUEST:
@@ -35,10 +36,12 @@ export const authReducer = (state = initialState, action) => {
       return { ...state, isLoading: false, user: action.payload };
     case GET_USER_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
-    case LOGOUT:
-      localStorage.removeItem("jwt");
-      return { ...state, jwt: null, user: null };
+      case LOGOUT:
+        localStorage.removeItem("jwt");
+        return { ...state, jwt: null, user: null };
     default:
       return state;
   }
 };
+
+export default authReducer;
